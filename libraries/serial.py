@@ -65,7 +65,7 @@ class SerialMonitor(object):
         messages.create_panel(direction=direction, in_file=not output_console)
 
         self.dprint = messages.print
-    
+
         self.clean = messages.clean_view
 
     def is_running(self):
@@ -141,6 +141,7 @@ class SerialMonitor(object):
                     inp_text = self.serial.read(buf_number)
                 except pyserial.serialutil.SerialException:
                     self.serial.close()
+                    toggle_serial_monitor(self.port)
                     break
 
                 length_in_text = len(inp_text)
